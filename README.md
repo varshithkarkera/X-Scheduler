@@ -2,6 +2,36 @@
 
 A simple Python script to schedule posts (text + images/videos) to X/Twitter.
 
+## What is this?
+
+X Scheduler automates scheduling posts to X/Twitter. Instead of manually scheduling each post through the X interface, you can:
+
+1. Put your images/videos and captions in numbered folders
+2. Run the script with a start time and interval
+3. Let it automatically schedule all your posts
+
+Perfect for content creators, social media managers, or anyone who wants to batch-schedule their X posts.
+
+## Quick Start
+
+```bash
+# 1. Install dependencies
+pip install selenium webdriver-manager rich
+
+# 2. Create your posts folder
+mkdir posts
+mkdir posts/1
+# Add your image: posts/1/photo.jpg
+# Add your caption: posts/1/caption.txt
+
+# 3. Export your X/Twitter cookies to cookies.json
+
+# 4. Run the scheduler
+python "X Scheduler.py" --time "9PM 29-11-2025" --interval 1h
+```
+
+That's it! The script will open Chrome, log into X using your cookies, and schedule all your posts.
+
 ## Features
 
 - 📅 Schedule posts with custom times or intervals
@@ -144,7 +174,27 @@ Override the interval-based schedule for specific posts by adding a schedule fil
 
 ### Option 1 (Folders)
 
-Create a `.txt` file with the schedule time:
+Create a `.txt` file with 't', 'time', or 'schedule' in the name:
+
+```
+posts/
+  1/
+    photo.jpg
+    caption.txt
+    t.txt           <- Contains: 10PM 30-11-2025
+```
+
+Or:
+
+```
+posts/
+  1/
+    photo.jpg
+    caption.txt
+    timet.txt       <- Contains: 10PM 30-11-2025
+```
+
+Or:
 
 ```
 posts/
@@ -156,19 +206,22 @@ posts/
 
 ### Option 2 (Flat Files)
 
-The script automatically detects if a `.txt` file is a schedule or post text:
+Use the `Xt.txt` naming convention where X is the post number:
 
 ```
 posts/
   1.png
-  1.txt             <- "10PM 30-11-2025" (detected as schedule)
+  1.txt             <- "Check out this photo!" (caption)
+  1t.txt            <- "10PM 30-11-2025" (schedule)
   2.jpg
-  2.txt             <- "Check out this photo!" (detected as post text)
+  2.txt             <- "Another great post!" (caption)
+  2t.txt            <- "11PM 30-11-2025" (schedule)
 ```
 
-**How it works:**
-- If the `.txt` file is a single line and matches the schedule format, it's treated as a schedule
-- Otherwise, it's treated as post text
+**Key points:**
+- `1.txt` = post caption/text
+- `1t.txt` = schedule time (the 't' stands for time)
+- You can have BOTH caption and schedule for the same post!
 
 ### Custom Schedule Format
 
@@ -228,15 +281,30 @@ posts/
   1/
     announcement.jpg
     text.txt        <- "Big news coming!"
-    schedule.txt    <- "9AM 25-12-2025"
+    t.txt           <- "9AM 25-12-2025"
   2/
     video.mp4
     text.txt        <- "Check out this video!"
-    schedule.txt    <- "12PM 25-12-2025"
+    t.txt           <- "12PM 25-12-2025"
   3/
     photo.jpg
     text.txt        <- "Happy holidays!"
-    schedule.txt    <- "6PM 25-12-2025"
+    t.txt           <- "6PM 25-12-2025"
+```
+
+Or using flat files:
+
+```
+posts/
+  1.jpg
+  1.txt             <- "Big news coming!"
+  1t.txt            <- "9AM 25-12-2025"
+  2.mp4
+  2.txt             <- "Check out this video!"
+  2t.txt            <- "12PM 25-12-2025"
+  3.jpg
+  3.txt             <- "Happy holidays!"
+  3t.txt            <- "6PM 25-12-2025"
 ```
 
 ```bash
