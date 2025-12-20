@@ -398,9 +398,9 @@ If you find this tool useful, consider supporting the development:
 
 ### Cryptocurrency Donations
 
-- ![Bitcoin](https://cryptologos.cc/logos/bitcoin-btc-logo.svg?v=035) **Bitcoin (BTC):** `bc1qjvtm7rd8yhqc836ndzmtcwy47ksqxaefve4nkv`
-- ![Litecoin](https://cryptologos.cc/logos/litecoin-ltc-logo.svg?v=035) **Litecoin (LTC):** `LbxcFMCFApZaaXmM9qCnEJDZBzeBsS4CxN`
-- ![Solana](https://cryptologos.cc/logos/solana-sol-logo.svg?v=035) **Solana (SOL):** `GcezFEFHDqZgyBxyrJp3JBZodHgK7ViDRFNxupwJpRdY`
+- <img src="https://cryptologos.cc/logos/bitcoin-btc-logo.svg?v=035" width="20" /> **Bitcoin (BTC):** `bc1qjvtm7rd8yhqc836ndzmtcwy47ksqxaefve4nkv`
+- <img src="https://cryptologos.cc/logos/litecoin-ltc-logo.svg?v=035" width="20" /> **Litecoin (LTC):** `LbxcFMCFApZaaXmM9qCnEJDZBzeBsS4CxN`
+- <img src="https://cryptologos.cc/logos/solana-sol-logo.svg?v=035" width="20" /> **Solana (SOL):** `GcezFEFHDqZgyBxyrJp3JBZodHgK7ViDRFNxupwJpRdY`
 
 ### Connect
 
@@ -409,4 +409,5 @@ If you find this tool useful, consider supporting the development:
 ---
 
 Made with ❤️ by [Varshith Karkera](https://varshithkarkera.vercel.app/)
+
 
