@@ -390,3 +390,22 @@ Contributions are welcome! Feel free to:
 
 This tool is for educational purposes. Use responsibly and follow X/Twitter's Terms of Service and automation rules.
 
+---
+
+## Support the Project
+
+If you find this tool useful, consider supporting the development:
+
+### Cryptocurrency Donations
+
+- **₿ Bitcoin (BTC):** `bc1qjvtm7rd8yhqc836ndzmtcwy47ksqxaefve4nkv`
+- **Ł Litecoin (LTC):** `LbxcFMCFApZaaXmM9qCnEJDZBzeBsS4CxN`
+- **◎ Solana (SOL):** `GcezFEFHDqZgyBxyrJp3JBZodHgK7ViDRFNxupwJpRdY`
+
+### Connect
+
+- **X:** [@varshithkarkera](https://x.com/varshithkarkera)
+
+---
+
+Made with ❤️ by [Varshith Karkera](https://varshithkarkera.vercel.app/)
