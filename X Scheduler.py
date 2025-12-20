@@ -20,12 +20,16 @@ Post Structure:
     posts/4.txt  (text only)
   
   Custom schedule per post (optional):
-    Create a .txt file with just the schedule time:
-    posts/1/schedule.txt containing: 10PM 30-11-2025
-    OR
-    posts/1.txt containing: 10PM 30-11-2025 (if using Option 2)
+    Option 1 (folders): Create a file with 't' in name or 'time'/'schedule':
+      posts/1/photo.jpg, posts/1/caption.txt, posts/1/t.txt
+      posts/1/photo.jpg, posts/1/caption.txt, posts/1/timet.txt
+      posts/1/photo.jpg, posts/1/caption.txt, posts/1/schedule.txt
     
-    Format: 
+    Option 2 (flat files): Use 'Xt.txt' format (X = post number):
+      posts/1.png, posts/1.txt, posts/1t.txt
+      posts/2.jpg, posts/2.txt, posts/2t.txt
+    
+    Schedule file content:
       12hr: XXPM/AM DD-MM-YYYY (e.g., "10PM 30-11-2025", "9:30AM 25-12-2025")
       24hr: HH DD-MM-YYYY or HH:MM DD-MM-YYYY (e.g., "21 30-11-2025", "14:30 25-12-2025")
   
@@ -148,11 +152,22 @@ def find_posts(posts_dir):
     # Look for numbered files or folders
     items = {}
     
-    # Check for numbered files (1.png, 1.txt, etc.)
+    # Check for numbered files (1.png, 1.txt, 1t.txt, etc.)
     for file in posts_path.iterdir():
         if file.is_file():
             name = file.stem
             ext = file.suffix.lower()
+            
+            # Check for schedule files (1t.txt, 2t.txt, etc.)
+            if name.endswith('t') and name[:-1].isdigit() and ext == '.txt':
+                num = int(name[:-1])
+                if num not in items:
+                    items[num] = {"media": None, "text": None, "schedule": None}
+                content = file.read_text(encoding='utf-8').strip()
+                items[num]["schedule"] = content
+                continue
+            
+            # Regular numbered files
             if name.isdigit():
                 num = int(name)
                 if num not in items:
@@ -160,15 +175,7 @@ def find_posts(posts_dir):
                 if ext in MEDIA_EXTS:
                     items[num]["media"] = str(file)
                 elif ext == '.txt':
-                    # Check if it's a schedule file (format: "10PM 30-11-2025")
-                    content = file.read_text(encoding='utf-8').strip()
-                    # Try to parse as schedule first
-                    try:
-                        parse_schedule_string(content)
-                        items[num]["schedule"] = content
-                    except Exception:
-                        # Not a schedule, treat as regular text
-                        items[num]["text"] = content
+                    items[num]["text"] = file.read_text(encoding='utf-8').strip()
     
     # Check for numbered folders (any filenames work inside)
     for folder in posts_path.iterdir():
@@ -182,21 +189,25 @@ def find_posts(posts_dir):
                 if not file.is_file():
                     continue
                 ext = file.suffix.lower()
-                if ext in MEDIA_EXTS and not items[num]["media"]:
-                    items[num]["media"] = str(file)
-                elif ext == '.txt' and not items[num]["text"] and not items[num]["schedule"]:
-                    # Check if it's a schedule file (format: "10PM 30-11-2025")
-                    content = file.read_text(encoding='utf-8').strip()
-                    # If content is a single line and looks like a schedule, treat as schedule
-                    if '\n' not in content and len(content) < 50:
+                fname = file.stem.lower()
+                
+                # Check for schedule files (any filename ending with 't' like 'schedulet.txt', 'timet.txt', or just 't.txt')
+                if ext == '.txt' and (fname.endswith('t') or fname == 't' or 'time' in fname or 'schedule' in fname):
+                    if not items[num]["schedule"]:
+                        content = file.read_text(encoding='utf-8').strip()
+                        # Verify it's actually a schedule format
                         try:
                             parse_schedule_string(content)
                             items[num]["schedule"] = content
                             continue
                         except Exception:
                             pass
-                    # Otherwise treat as regular text
-                    items[num]["text"] = content
+                
+                # Regular media and text files
+                if ext in MEDIA_EXTS and not items[num]["media"]:
+                    items[num]["media"] = str(file)
+                elif ext == '.txt' and not items[num]["text"]:
+                    items[num]["text"] = file.read_text(encoding='utf-8').strip()
     
     # Convert to sorted list
     for num in sorted(items.keys()):
@@ -656,7 +667,8 @@ def main():
             console.print("\n[yellow]Expected structure:[/yellow]")
             console.print("  Option 1 (RECOMMENDED): posts/1/dkjad.jpg + posts/1/keake.txt")
             console.print("  Option 2: posts/1.png + posts/1.txt")
-            console.print("  Custom schedule: posts/1/schedule.txt containing '10PM 30-11-2025'")
+            console.print("  With schedule: posts/1.png + posts/1.txt + posts/1t.txt")
+            console.print("                 (1t.txt contains: '10PM 30-11-2025')")
             console.print("\n[dim]Supported: .png .jpg .jpeg .gif .mp4 .webp + .txt (optional)[/dim]")
             return
         
