@@ -351,19 +351,19 @@ Posts a thread with 5-minute intervals between tweets.
 - Check the console output for detailed error messages
 - Failed posts won't be retried automatically
 
-### "No posts found"
+### No posts found
 
 - Check that your posts directory exists
 - Verify files are numbered correctly (1, 2, 3, etc.)
 - Make sure files have supported extensions
 
-### "No cookies loaded"
+### No cookies loaded
 
 - Ensure `cookies.json` exists in the same folder as the script
 - Export fresh cookies from your browser
 - Check the JSON format is valid
 
-### "Scheduling failed"
+### Scheduling failed
 
 - Verify your schedule time is in the future
 - Check the time format is correct
@@ -389,3 +389,4 @@ Contributions are welcome! Feel free to:
 ## Disclaimer
 
 This tool is for educational purposes. Use responsibly and follow X/Twitter's Terms of Service and automation rules.
+
