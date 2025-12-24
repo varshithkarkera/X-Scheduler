@@ -394,7 +394,7 @@ This tool is for educational purposes. Use responsibly and follow X/Twitter's Te
 ## Star History
 
 <p align="center">
-  <img src="https://api.star-history.com/svg?repos=varshithkarkera/x-scheduler&type=Date" />
+  <img src="https://api.star-history.com/svg?repos=varshithkarkera/x-scheduler&type=Date&theme=dark" />
 </p>
 
 
@@ -417,6 +417,7 @@ If you find this tool useful, consider supporting the development:
 ---
 
 Made with ❤️ by [Varshith Karkera](https://varshithkarkera.vercel.app/)
+
 
 
 
