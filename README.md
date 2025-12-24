@@ -1,4 +1,4 @@
-X Scheduler
+# X Scheduler
 
 A simple Python script to schedule posts (text + images/videos) to X/Twitter.
 
@@ -413,6 +413,7 @@ If you find this tool useful, consider supporting the development:
 ---
 
 Made with ❤️ by [Varshith Karkera](https://varshithkarkera.vercel.app/)
+
 
 
 
