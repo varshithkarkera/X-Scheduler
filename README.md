@@ -416,7 +416,8 @@ If you find this tool useful, consider supporting the development:
 
 ---
 
-Made with ❤️ by [Varshith Karkera](https://varshithkarkera.vercel.app/)
+Made by [Varshith Karkera](https://varshithkarkera.vercel.app/)
+
 
 
 
