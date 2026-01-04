@@ -417,11 +417,3 @@ If you find this tool useful, consider supporting the development:
 ---
 
 Made by [Varshith Karkera](https://varshithkarkera.vercel.app/)
-
-
-
-
-
-
-
-
